@@ -12,6 +12,7 @@ public class PlayerWeapon : MonoBehaviour {
     public WeaponState state;
 
     public GameObject[] bullets;
+    public GameObject missile;
 
     public float fireRate;
     float fireTimer;
@@ -19,8 +20,8 @@ public class PlayerWeapon : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        missiles = missileCapacity;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -28,12 +29,16 @@ public class PlayerWeapon : MonoBehaviour {
 
         if (Input.GetButtonDown("Fire1")) {
             if (fireTimer > fireRate) {
-                Shoot();
+                PrimaryFire();
+            }
+        } else if (Input.GetButtonDown("Fire2")) {
+            if (fireTimer > fireRate && missiles > 0) {
+                SecondaryFire();
             }
         }
-	}
+    }
 
-    void Shoot()
+    void PrimaryFire()
     {
         GameObject bullet = Instantiate(bullets[(int)state], shooter.position, Quaternion.LookRotation(shooter.forward)) as GameObject;
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
@@ -41,5 +46,22 @@ public class PlayerWeapon : MonoBehaviour {
         bulletRb.AddForce(shooter.transform.forward * bulletSpeed, ForceMode.Impulse);
 
         fireTimer = 0;
+    }
+
+
+    public void FillMissleAmmo()
+    {
+        missiles = missileCapacity;
+    }
+
+    void SecondaryFire()
+    {
+        GameObject bullet = Instantiate(missile, shooter.position, Quaternion.LookRotation(shooter.forward)) as GameObject;
+        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+
+        bulletRb.AddForce(shooter.transform.forward * bulletSpeed, ForceMode.Impulse);
+
+        fireTimer = 0;
+        missiles--;
     }
 }

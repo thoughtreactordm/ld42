@@ -17,8 +17,11 @@ public class WallBullet : MonoBehaviour {
         if (collision.other.CompareTag("Wall")) {
             ContactPoint contact = collision.contacts[0];
             SpawnWall(contact);
-        } else if (collision.other.CompareTag("Enemy")) {
-            // do enemy things here
+        } else if (collision.collider.CompareTag("Enemy")) {
+            Destroy(collision.collider.gameObject);
+            Destroy(this.gameObject);
+        } else {
+            Destroy(this.gameObject);
         }
     }
 
@@ -31,5 +34,7 @@ public class WallBullet : MonoBehaviour {
         Quaternion wallRot = Quaternion.LookRotation(wallDir);
 
         GameObject wallObj = Instantiate(wall, wallSpawnPos, wallRot) as GameObject;
+        GameManager.instance.wallsCreated++;
+        Destroy(this.gameObject);
     }
 }
