@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class PlayerWall : MonoBehaviour {
+public class PlayerWall : MonoBehaviour { 
 
     public LayerMask wallMask;
     public float growthRate;
@@ -36,4 +36,10 @@ public class PlayerWall : MonoBehaviour {
             growing = false;
         }
 	}
+
+    public void StopGrowing()
+    {
+        //growing = false;
+        animation.DOPause();
+    }
 }

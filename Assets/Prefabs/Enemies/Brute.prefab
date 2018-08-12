@@ -272,7 +272,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: f600025b931d20541b63bad8f59196a6, type: 2}
+  - {fileID: 2100000, guid: 965ce3eacf8e36946bc44b11a160a231, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -377,7 +377,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: f600025b931d20541b63bad8f59196a6, type: 2}
+  - {fileID: 2100000, guid: 965ce3eacf8e36946bc44b11a160a231, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -439,9 +439,7 @@ MonoBehaviour:
   bullet: {fileID: 1464155100304728, guid: 1d6044d5b3e46ba4aba84c4adf116088, type: 2}
   bulletSpeed: 17.5
   shooter: {fileID: 4335901352004856}
-  target: {fileID: 4373383665629618, guid: b4a3d98662d1bfd4fa12397923ed6cf1, type: 2}
   fireRate: 2.25
-  pickups: []
 --- !u!135 &135656227241716758
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -512,7 +510,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1100888100750756}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 2
   m_Speed: 5
   m_Acceleration: 12
   avoidancePriority: 50

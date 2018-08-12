@@ -16,7 +16,12 @@ public class EnemyKamikaze : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        agent.SetDestination(target.position);
+        if (GameManager.instance.ready) {
+            agent.isStopped = false;
+            agent.SetDestination(target.position);
+        } else {
+            agent.isStopped = true;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

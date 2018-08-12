@@ -51,3 +51,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d904c52ea72eff04b98320f386919db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kills: 0
+  wallsCreated: 0
+  wallsDestroyed: 0
+  roundTime: 0
+  ready: 0
+  pickUps:
+  - {fileID: 1081569886485476, guid: 0374030220d578b408d3751417fc684d, type: 2}
+  - {fileID: 1998499897866798, guid: 63da3e81b0f9a9443b926b54cece3212, type: 2}
+  - {fileID: 1081569886485476, guid: 088913dfff81c7743a43496c7725234d, type: 2}

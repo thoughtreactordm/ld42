@@ -215,7 +215,7 @@ MonoBehaviour:
   isRelative: 1
   isFrom: 0
   isIndependentUpdate: 0
-  autoKill: 1
+  autoKill: 0
   isActive: 1
   isValid: 1
   target: {fileID: 4628539331446754}

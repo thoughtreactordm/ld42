@@ -30,6 +30,12 @@ public class Player : MonoBehaviour {
         }
 	}
 
+    public void RecoverHealth()
+    {
+        health = maxHealth;
+        healthDisplay.SetDisplay(health);
+    }
+
     public void TakeDamage(int dmg)
     {
         health -= dmg;
@@ -39,6 +45,8 @@ public class Player : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("PlayerWall")) {
+            PlayerWall wall = collision.collider.GetComponent<PlayerWall>();
+            //wall.StopGrowing();
             gm.GameOver();
         }
     }

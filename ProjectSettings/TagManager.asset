@@ -10,6 +10,10 @@ TagManager:
   - RoundTimer
   - HealthDisplay
   - AmmoDisplay
+  - Fader
+  - ResultsDisplay
+  - PauseScreen
+  - HelpScreen
   layers:
   - Default
   - TransparentFX

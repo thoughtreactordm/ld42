@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour {
 
+    public static SpawnManager instance;
+
     public Transform[] spawners;
     public GameObject[] enemies;
 
@@ -19,9 +21,13 @@ public class SpawnManager : MonoBehaviour {
     int maxEnemylevel;
     int curMinEnemyLevel;
 
+    public int curSpawnCount;
+    public int curMaxSpawnCount = 20;
+
     void Start()
     {
-        maxEnemylevel = enemies.Length - 1;    
+        instance = this;
+        maxEnemylevel = enemies.Length - 1;
     }
 
     void Update()
@@ -29,24 +35,24 @@ public class SpawnManager : MonoBehaviour {
         if (GameManager.instance.ready) {
             spawnTimer += Time.deltaTime;
             spawnLevelTimer += Time.deltaTime;
-        }
 
-        if (spawnTimer >= spawnInterval) {
-            Spawn();
-        }
-
-        if (spawnLevelTimer > spawnLevelInterval) {
-            Debug.Log("Increase difficulty");
-            if (curMinEnemyLevel < maxEnemylevel) {
-                curMinEnemyLevel++;
+            if (spawnTimer >= spawnInterval) {
+                Spawn();
             }
 
-            if (curTotalSpawn < maxSpawn) {
-                curTotalSpawn++;
-                curMinSpawn++;
-            }
+            if (spawnLevelTimer > spawnLevelInterval) {
+                Debug.Log("Increase difficulty");
+                if (curMinEnemyLevel < maxEnemylevel) {
+                    curMinEnemyLevel++;
+                }
 
-            spawnLevelTimer = 0;
+                if (curTotalSpawn < maxSpawn) {
+                    curTotalSpawn++;
+                    curMinSpawn++;
+                }
+
+                spawnLevelTimer = 0;
+            }
         }
     }
 
@@ -56,10 +62,13 @@ public class SpawnManager : MonoBehaviour {
         spawnTimer = 0;
 
         for (int i = 0; i < spawnNum; i++) {
-            int randomSpawner = Random.Range(0, spawners.Length - 1);
-            int randomEnemy = Random.Range(0, curMinEnemyLevel);
+            if (curSpawnCount < curMaxSpawnCount) {
+                int randomSpawner = Random.Range(0, spawners.Length - 1);
+                int randomEnemy = Random.Range(0, curMinEnemyLevel);
 
-            Instantiate(enemies[randomEnemy], spawners[randomSpawner].position, Quaternion.identity);
+                Instantiate(enemies[randomEnemy], spawners[randomSpawner].position, Quaternion.identity);
+                curSpawnCount++;
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ public class Pickup : MonoBehaviour {
 
     private void Awake()
     {
-        Destroy(this.gameObject, 15f);
+        Destroy(this.gameObject, 20f);
     }
 
     private void OnTriggerEnter(Collider other)

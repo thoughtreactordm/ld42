@@ -16,9 +16,11 @@ public class PlayerWeapon : MonoBehaviour {
     public float bulletSpeed;
 
     AmmoDisplayController ammoDisplay;
+    GameManager gm;
 
     // Use this for initialization
     void Start () {
+        gm = GameManager.instance;
         missiles = missileCapacity;
         ammoDisplay = GameObject.FindGameObjectWithTag("AmmoDisplay").GetComponent<AmmoDisplayController>();
     }
@@ -27,11 +29,11 @@ public class PlayerWeapon : MonoBehaviour {
 	void Update () {
         fireTimer += Time.deltaTime;
 
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Fire1") && gm.ready) {
             if (fireTimer > fireRate) {
                 PrimaryFire();
             }
-        } else if (Input.GetButtonDown("Fire2")) {
+        } else if (Input.GetButtonDown("Fire2") && gm.ready) {
             if (fireTimer > fireRate && missiles > 0) {
                 SecondaryFire();
             }
@@ -51,6 +53,7 @@ public class PlayerWeapon : MonoBehaviour {
     public void FillMissleAmmo()
     {
         missiles = missileCapacity;
+        ammoDisplay.SetDisplay(missiles);
     }
 
     void SecondaryFire()

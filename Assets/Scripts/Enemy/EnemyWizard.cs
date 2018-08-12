@@ -17,8 +17,6 @@ public class EnemyWizard : MonoBehaviour {
     public float fireRate;
     float fireTimer;
 
-    public GameObject[] pickups;
-
     // Use this for initialization
     void Awake()
     {
@@ -29,7 +27,7 @@ public class EnemyWizard : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (inRange) {
+        if (inRange && GameManager.instance.ready) {
             fireTimer += Time.deltaTime;
 
             if (fireTimer >= fireRate) {
@@ -37,7 +35,12 @@ public class EnemyWizard : MonoBehaviour {
             }
         }
 
-        agent.SetDestination(target.position);
+        if (GameManager.instance.ready) {
+            agent.isStopped = false;
+            agent.SetDestination(target.position);
+        } else {
+            agent.isStopped = true;
+        }
     }
 
     void Shoot()
@@ -62,16 +65,5 @@ public class EnemyWizard : MonoBehaviour {
         if (collision.collider.CompareTag("Player")) {
             GameManager.instance.GameOver();
         }
-    }
-
-    private void OnDestroy()
-    {
-        SpawnPickups();
-        GameManager.instance.kills++;
-    }
-
-    void SpawnPickups()
-    {
-
     }
 }

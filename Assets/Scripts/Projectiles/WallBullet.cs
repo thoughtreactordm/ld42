@@ -18,9 +18,11 @@ public class WallBullet : MonoBehaviour {
             ContactPoint contact = collision.contacts[0];
             SpawnWall(contact);
         } else if (collision.collider.CompareTag("Enemy")) {
+            GameManager.instance.SpawnPickups(collision.collider.transform.position);
             Destroy(collision.collider.gameObject);
             Destroy(this.gameObject);
             GameManager.instance.kills++;
+            SpawnManager.instance.curSpawnCount--;
         } else {
             Destroy(this.gameObject);
         }
