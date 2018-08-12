@@ -20,6 +20,7 @@ public class WallBullet : MonoBehaviour {
         } else if (collision.collider.CompareTag("Enemy")) {
             Destroy(collision.collider.gameObject);
             Destroy(this.gameObject);
+            GameManager.instance.kills++;
         } else {
             Destroy(this.gameObject);
         }

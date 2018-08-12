@@ -11,6 +11,7 @@ public class Missile : MonoBehaviour {
         if (collision.collider.CompareTag("PlayerWall")) {
             Destroy(this.gameObject);
             Destroy(collision.collider.gameObject);
+            GameManager.instance.wallsDestroyed++;
         } else {
             Destroy(this.gameObject);
         }

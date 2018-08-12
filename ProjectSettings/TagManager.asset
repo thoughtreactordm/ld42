@@ -7,6 +7,9 @@ TagManager:
   - Wall
   - Enemy
   - PlayerWall
+  - RoundTimer
+  - HealthDisplay
+  - AmmoDisplay
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - 
   - 
   - Wall
-  - 
+  - PostProcess
   - 
   - 
   - 

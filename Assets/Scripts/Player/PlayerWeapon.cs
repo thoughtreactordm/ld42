@@ -8,19 +8,19 @@ public class PlayerWeapon : MonoBehaviour {
     int missileCapacity = 3;
     public int missiles;
 
-    public enum WeaponState { Normal, Penetrate, NoWalls };
-    public WeaponState state;
-
-    public GameObject[] bullets;
+    public GameObject bullet;
     public GameObject missile;
 
     public float fireRate;
     float fireTimer;
     public float bulletSpeed;
 
+    AmmoDisplayController ammoDisplay;
+
     // Use this for initialization
     void Start () {
         missiles = missileCapacity;
+        ammoDisplay = GameObject.FindGameObjectWithTag("AmmoDisplay").GetComponent<AmmoDisplayController>();
     }
 	
 	// Update is called once per frame
@@ -40,14 +40,13 @@ public class PlayerWeapon : MonoBehaviour {
 
     void PrimaryFire()
     {
-        GameObject bullet = Instantiate(bullets[(int)state], shooter.position, Quaternion.LookRotation(shooter.forward)) as GameObject;
-        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+        GameObject bulletObj = Instantiate(bullet, shooter.position, Quaternion.LookRotation(shooter.forward)) as GameObject;
+        Rigidbody bulletRb = bulletObj.GetComponent<Rigidbody>();
 
         bulletRb.AddForce(shooter.transform.forward * bulletSpeed, ForceMode.Impulse);
 
         fireTimer = 0;
     }
-
 
     public void FillMissleAmmo()
     {
@@ -63,5 +62,6 @@ public class PlayerWeapon : MonoBehaviour {
 
         fireTimer = 0;
         missiles--;
+        ammoDisplay.SetDisplay(missiles);
     }
 }

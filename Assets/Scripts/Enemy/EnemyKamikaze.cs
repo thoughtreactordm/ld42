@@ -5,12 +5,13 @@ using UnityEngine.AI;
 
 public class EnemyKamikaze : MonoBehaviour {
 
-    public Transform target;
+    Transform target;
     NavMeshAgent agent;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         agent = GetComponent<NavMeshAgent>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 	
 	// Update is called once per frame
@@ -23,10 +24,5 @@ public class EnemyKamikaze : MonoBehaviour {
         if (collision.collider.CompareTag("Player")) {
             GameManager.instance.GameOver();
         }
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.instance.kills++;
     }
 }

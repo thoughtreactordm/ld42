@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour {
     public int kills;
     public int wallsCreated;
     public int wallsDestroyed;
+    public float roundTime;
+
+    public bool ready;
 
     // Use this for initialization
     void Awake() {
@@ -25,16 +28,30 @@ public class GameManager : MonoBehaviour {
 
     public void Init()
     {
+        kills = 0;
+        wallsCreated = 0;
+        wallsDestroyed = 0;
+        roundTime = 0;
 
+        ready = true;
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+        if (ready) {
+            roundTime += Time.deltaTime;
+
+        }
+
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
 	}
 
     public void GameOver()
     {
-        Application.LoadLevel(Application.loadedLevel);
+        ready = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

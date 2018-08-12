@@ -8,11 +8,10 @@ public class Player : MonoBehaviour {
     Rigidbody rb;
     public PlayerWeapon weapon;
 
-
     int health;
     public int maxHealth;
 
-    bool phaseShield;
+    HealthDisplayController healthDisplay;
 
     // Use this for initialization
     void Start () {
@@ -20,6 +19,8 @@ public class Player : MonoBehaviour {
 
         rb = GetComponent<Rigidbody>();
         gm = GameManager.instance;
+
+        healthDisplay = GameObject.FindGameObjectWithTag("HealthDisplay").GetComponent<HealthDisplayController>();
 	}
 	
 	// Update is called once per frame
@@ -32,11 +33,12 @@ public class Player : MonoBehaviour {
     public void TakeDamage(int dmg)
     {
         health -= dmg;
+        healthDisplay.SetDisplay(health);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("PlayerWall") && !phaseShield) {
+        if (collision.collider.CompareTag("PlayerWall")) {
             gm.GameOver();
         }
     }

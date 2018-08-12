@@ -439,8 +439,9 @@ MonoBehaviour:
   bullet: {fileID: 1464155100304728, guid: 1d6044d5b3e46ba4aba84c4adf116088, type: 2}
   bulletSpeed: 17.5
   shooter: {fileID: 4335901352004856}
-  target: {fileID: 0}
+  target: {fileID: 4373383665629618, guid: b4a3d98662d1bfd4fa12397923ed6cf1, type: 2}
   fireRate: 2.25
+  pickups: []
 --- !u!135 &135656227241716758
 SphereCollider:
   m_ObjectHideFlags: 1

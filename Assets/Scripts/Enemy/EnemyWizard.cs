@@ -9,7 +9,7 @@ public class EnemyWizard : MonoBehaviour {
     public float bulletSpeed;
     public Transform shooter;
 
-    public Transform target;
+    Transform target;
     NavMeshAgent agent;
 
     bool inRange;
@@ -17,10 +17,13 @@ public class EnemyWizard : MonoBehaviour {
     public float fireRate;
     float fireTimer;
 
+    public GameObject[] pickups;
+
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -63,6 +66,12 @@ public class EnemyWizard : MonoBehaviour {
 
     private void OnDestroy()
     {
+        SpawnPickups();
         GameManager.instance.kills++;
+    }
+
+    void SpawnPickups()
+    {
+
     }
 }
