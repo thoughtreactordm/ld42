@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyKamikaze : MonoBehaviour {
+public class EnemyKamikaze : Enemy {
 
     Transform target;
     NavMeshAgent agent;
@@ -28,6 +28,7 @@ public class EnemyKamikaze : MonoBehaviour {
     {
         if (collision.collider.CompareTag("Player")) {
             GameManager.instance.GameOver();
+            collision.collider.GetComponent<Player>().Explode();
         }
     }
 }

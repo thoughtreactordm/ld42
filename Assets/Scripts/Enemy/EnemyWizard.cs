@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyWizard : MonoBehaviour {
+public class EnemyWizard : Enemy {
 
     public GameObject bullet;
     public float bulletSpeed;
@@ -64,6 +64,7 @@ public class EnemyWizard : MonoBehaviour {
     {
         if (collision.collider.CompareTag("Player")) {
             GameManager.instance.GameOver();
+            collision.collider.GetComponent<Player>().Explode();
         }
     }
 }

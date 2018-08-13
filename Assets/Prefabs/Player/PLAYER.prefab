@@ -654,6 +654,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 114024863340925260}
   maxHealth: 3
+  explosion: {fileID: 1574777530879036, guid: e415cd4ff4b88664caba80aeb5bc33c0, type: 2}
+  graphics: {fileID: 1033046539829106}
 --- !u!114 &114734360859773582
 MonoBehaviour:
   m_ObjectHideFlags: 1

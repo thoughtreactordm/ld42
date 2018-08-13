@@ -9,10 +9,15 @@ public class TitleMenuController : MonoBehaviour {
     bool helpActive;
     HelpScreenController helpScreen;
 
+    public bool pauseMenu;
+
     private void Start()
     {
         fader = GameObject.FindGameObjectWithTag("Fader").GetComponent<FaderController>();
-        helpScreen = GameObject.FindGameObjectWithTag("HelpScreen").GetComponent<HelpScreenController>();
+
+        if (!pauseMenu) {
+            helpScreen = GameObject.FindGameObjectWithTag("HelpScreen").GetComponent<HelpScreenController>();
+        }
     }
 
     public void Play()

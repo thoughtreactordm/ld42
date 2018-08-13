@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
 
     ResultsScreenController resultsController;
     PauseScreenController pauseController;
+    GameObject readyText;
     
 
     // Use this for initialization
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour {
 
         resultsController = GameObject.FindGameObjectWithTag("ResultsDisplay").GetComponent<ResultsScreenController>();
         pauseController = GameObject.FindGameObjectWithTag("PauseScreen").GetComponent<PauseScreenController>();
+        readyText = GameObject.FindGameObjectWithTag("ReadyUpText");
 
     }
 	
@@ -52,14 +54,14 @@ public class GameManager : MonoBehaviour {
 
         if (ready) {
             roundTime += Time.deltaTime;
-
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && !ready && !resultsScreen) {
             ready = true;
+            readyText.SetActive(false);
         }
 
-		if (Input.GetKeyDown(KeyCode.Escape)) {
+		if (Input.GetKeyDown(KeyCode.Escape) && !readyText.activeInHierarchy) {
             if (paused)
                 Unpause();
             else

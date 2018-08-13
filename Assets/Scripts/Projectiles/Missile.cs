@@ -8,6 +8,7 @@ public class Missile : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+
         if (collision.collider.CompareTag("PlayerWall")) {
             Destroy(this.gameObject);
             Destroy(collision.collider.gameObject);
@@ -15,6 +16,11 @@ public class Missile : MonoBehaviour {
         } else {
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
     }
 
 }

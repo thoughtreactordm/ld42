@@ -5,6 +5,7 @@ using UnityEngine;
 public class WallBullet : MonoBehaviour {
 
     public GameObject wall;
+    public GameObject particleFx;
     Rigidbody rb;
 
     private void Awake()
@@ -19,7 +20,7 @@ public class WallBullet : MonoBehaviour {
             SpawnWall(contact);
         } else if (collision.collider.CompareTag("Enemy")) {
             GameManager.instance.SpawnPickups(collision.collider.transform.position);
-            Destroy(collision.collider.gameObject);
+            collision.collider.gameObject.GetComponent<Enemy>().Explode();
             Destroy(this.gameObject);
             GameManager.instance.kills++;
             SpawnManager.instance.curSpawnCount--;
@@ -31,6 +32,7 @@ public class WallBullet : MonoBehaviour {
     void SpawnWall(ContactPoint contact)
     {
         Vector3 wallDir = -transform.forward;
+        Instantiate(particleFx, transform.position, Quaternion.LookRotation(-transform.forward));
         rb.isKinematic = true;
         Vector3 wallSpawnPos = new Vector3(contact.point.x, 0, contact.point.z);
 

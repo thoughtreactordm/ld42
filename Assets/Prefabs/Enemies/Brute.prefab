@@ -436,6 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d388eb57e10ba594e915c956771bb7ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 1486407273467564, guid: fb1b5ce4ecddafa42873102dbfbd4fb5, type: 2}
   bullet: {fileID: 1464155100304728, guid: 1d6044d5b3e46ba4aba84c4adf116088, type: 2}
   bulletSpeed: 17.5
   shooter: {fileID: 4335901352004856}

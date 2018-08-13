@@ -25,13 +25,7 @@ public class ResultsScreenController : MonoBehaviour {
 
 	public void SetValues()
     {
-        killCount.GetComponent<Text>().text = GameManager.instance.kills.ToString();
-        createdCount.GetComponent<Text>().text = GameManager.instance.wallsCreated.ToString();
-        destroyedCount.GetComponent<Text>().text = GameManager.instance.wallsDestroyed.ToString();
-        
-        killCount.GetComponent<DOTweenAnimation>().DOPlay();
-        createdCount.GetComponent<DOTweenAnimation>().DOPlay();
-        destroyedCount.GetComponent<DOTweenAnimation>().DOPlay();
+        StartCoroutine(ValueAnimation());
         
         var minutes = Mathf.FloorToInt(GameManager.instance.roundTime / 60);
         var seconds = Mathf.CeilToInt(GameManager.instance.roundTime % 60);
@@ -42,6 +36,15 @@ public class ResultsScreenController : MonoBehaviour {
             timeLabel.GetComponent<Text>().text = "YOU SURVIVED " + minutes + " AND " + seconds + " SECONDS!";
         }
               
+    }
+
+    IEnumerator ValueAnimation() 
+    {
+        killCount.GetComponent<Text>().text = GameManager.instance.kills.ToString();
+        createdCount.GetComponent<Text>().text = GameManager.instance.wallsCreated.ToString();
+        destroyedCount.GetComponent<Text>().text = GameManager.instance.wallsDestroyed.ToString();
+
+        yield return false;
     }
 
 }

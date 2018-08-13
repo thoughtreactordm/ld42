@@ -13,6 +13,9 @@ public class Player : MonoBehaviour {
 
     HealthDisplayController healthDisplay;
 
+    public GameObject explosion;
+    public GameObject graphics;
+
     // Use this for initialization
     void Start () {
         health = maxHealth;
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour {
 	void Update () {
 		if (health <= 0) {
             gm.GameOver();
+            Explode();
         }
 	}
 
@@ -48,6 +52,13 @@ public class Player : MonoBehaviour {
             PlayerWall wall = collision.collider.GetComponent<PlayerWall>();
             //wall.StopGrowing();
             gm.GameOver();
+            Explode();
         }
+    }
+
+    public void Explode()
+    {
+        graphics.SetActive(false);
+        Instantiate(explosion, transform.position, Quaternion.identity);
     }
 }
